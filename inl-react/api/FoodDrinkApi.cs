@@ -27,17 +27,14 @@ namespace Functions
 
             if (foodDrinks.Any())
             {
-                
                 var result = new ApiResponse(
                     foodDrinks.First().DrinkName,
                     foodDrinks.First().DrinkImg,
                     foodDrinks.First().FoodName,
                     foodDrinks.First().FoodImg
                 );
-
                 return new OkObjectResult(result);
             }
-
             return new OkResult();
         }
     }

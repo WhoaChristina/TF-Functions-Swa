@@ -21,8 +21,6 @@ namespace Teknikfördjupning
         [FunctionName("ProcessorFunction")]
         public static async Task<string> Run([ActivityTrigger] (string cocktail, string meal) input,
             [Table("DrinkFood"), StorageAccount("AzureWebJobsStorage")] ICollector<ProcessorFunction.TableData> msg)
-            //StorageAccount skrivas om till connectionstring till azure storage account. den ligger i local.settings.json
-            //Table vill skrivas om också, det ska vara tabellen som vi vill skriva till
         {
             string res = "";
             try
@@ -36,13 +34,7 @@ namespace Teknikfördjupning
                 string meal = jsonMeal.meals[0]["strMeal"];
                 string mealThumb = jsonMeal.meals[0]["strMealThumb"];
 
-                //string data = drinkName + "|" + drinkImg + "|" + mealName + "|" + mealImg;
-                //string json = JsonConvert.SerializeObject(data);
-
                 msg.Add(new ProcessorFunction.TableData("1", $"{(DateTimeOffset.MaxValue.Ticks-DateTime.Now.Ticks):d10}-{Guid.NewGuid():N}", drink, drinkThumb, meal, mealThumb));
-
-                
-                
 
                 res = "done!";
             }

@@ -42,7 +42,7 @@ namespace Teknikfördjupning
             string instanceId = await starter.StartNewAsync("OrchestrationFunction", null);
 
             log.LogInformation($"Started orchestration with ID = '{instanceId}'.");
-            log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+            log.LogInformation($"Timer trigger function executed at: {DateTime.Now}");
         }
     }
 }
